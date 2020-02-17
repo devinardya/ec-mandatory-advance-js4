@@ -17,7 +17,11 @@
   border-radius: 50%;
   position: relative;
   top: 10px;
+  background-color: #d3d3d3;
+}
 
+.indicator-dot.red {
+  background-color: red;
 }
 
 .sidebar {
@@ -27,10 +31,15 @@
   flex-flow: column wrap;
   justify-content: center;
   color: grey;
+  align-items: center;
 }
 
 .sidebar.one {
   align-items: flex-end;
+}
+
+.sidebar.one > h2 {
+  color: rgb(255, 126, 148);
 }
 
 .sidebar.two {
@@ -40,6 +49,13 @@
 .sidebar > h1 {
   font-size: 80px;
   margin: 0;
+  height: 150px;
+  width: 150px;
+  line-height: 150px;
+  border-radius:20px;
+  border: 1px solid pink;
+  display: flex;
+  justify-content: center;
 }
 
 .sidebar > p {
@@ -59,7 +75,7 @@
 }
 
 .menu-bar {
-  height: 8%;
+  height: 15%;
   display: flex;
   flex-flow: row wrap;
   justify-content: center;
@@ -84,10 +100,10 @@
 
 .container {
   display: grid;
-  width: 700px;
+  width: 560px;
   height: auto;
-  grid-template-columns: repeat(7, 100px [col-start]);
-  grid-template-rows: repeat(6, 100px [col-start]); 
+  grid-template-columns: repeat(7, 80px [col-start]);
+  grid-template-rows: repeat(6, 80px [col-start]); 
   grid-column-gap: 0px;
   grid-row-gap: 0px;
   background-color:cadetblue; 
@@ -117,7 +133,7 @@
 }
 
 .color-box {
-  width: 100px;
-  height: 100px;
+  width: 80px;
+  height: 80px;
   margin: 0 5px;
 }
