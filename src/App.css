@@ -3,32 +3,107 @@
 }
 
 .box-container {
-  width: 100vh;
+  height: 100vh;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-between;
+  margin: auto;
+  align-items: center;
+}
+
+.indicator-dot {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  position: relative;
+  top: 10px;
+
+}
+
+.sidebar {
+  width: 20%;
   height: 100vh;
   display: flex;
   flex-flow: column wrap;
   justify-content: center;
-  margin: auto;
+  color: grey;
+}
+
+.sidebar.one {
+  align-items: flex-end;
+}
+
+.sidebar.two {
+  align-items: flex-start;
+}
+
+.sidebar > h1 {
+  font-size: 80px;
+  margin: 0;
+}
+
+.sidebar > p {
+  height:16px;
+  margin: 0;
+  color: rgb(255, 93, 120);
+  font-weight: bold;
+}
+
+.game-boxes {
+  width: 60%;
+  height: 100%;
+  display: flex;
+  flex-flow: column wrap;
+  justify-content: center;
+  align-items: center;
+}
+
+.menu-bar {
+  height: 8%;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  align-items: center;
+  margin: -30px 0 10px 0;
+}
+
+.menu-bar > h1 {
+  margin: 0 40px;
+  color: cadetblue;
+}
+
+.menu-bar > button {
+  padding: 10px 23px;
+  width: 150px;
+  background-color: rgb(255, 110, 134);
+  border: none;
+  border-radius: 10px;
+  color: #fff;
+  font-weight: bold;
 }
 
 .container {
   display: grid;
   width: 700px;
-  height: 600px;
+  height: auto;
   grid-template-columns: repeat(7, 100px [col-start]);
   grid-template-rows: repeat(6, 100px [col-start]); 
   grid-column-gap: 0px;
   grid-row-gap: 0px;
-  background-color: rgb(255, 190, 49); 
-  margin: 0 auto;
+  background-color:cadetblue; 
   justify-content: center;
+  padding: 30px;
+  border-radius: 25px;
+  -webkit-box-shadow: 0px 50px 100px -31px rgba(184,184,184,0.86);
+  -moz-box-shadow: 0px 50px 100px -31px rgba(184,184,184,0.86);
+  box-shadow: 0px 50px 100px -31px rgba(184,184,184,0.86);
  /*  border: 1px solid #737373; */
 }
 
 .box{
-  border: 1px solid #737373;
-  width: 80px;
-  height: 80px;
+  border: none;
+  width: 80%;
+  height: 80%;
   border-radius: 50%;
   margin: auto;
 }

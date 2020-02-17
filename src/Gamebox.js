@@ -1,56 +1,53 @@
 import React, {useReducer} from 'react';
 import Grid from './Grid';
-
-
-function reducer(state, action) {
-   
-    switch (action.type) {
-        // the action type used on a specific onClick function based on the function
-        case "fill":
-            //copy the boxes from the state to a new variable
-            //then by using the index of the array to pint point a specific box, set the color chosen from the color picker
-            const newBoxes = [...state.boxes];
-            const column = action.index % 7;
-            let index = 5 * 7 + column;
-            console.log("index", index);
-           /*  index -= 7; */
-
-            
-            const allFilledBox = [...state.filledBox];
-            while (allFilledBox.includes(index)){
-                index -= 7; 
-            }
-
-            if (index < 0) {
-                return state;
-            }
-
-            newBoxes[index] = state.color;
-
-            console.log("filledbox", state.filledBox)
-            return {
-                //saving every changes done to the state by doing the spread (...)
-                ...state,
-                //setting a specific state to the new one (like setState on class)
-                boxes: newBoxes,
-                color: state.color === "red" ? "blue" : "red",
-                filledBox: [...state.filledBox, index]
-            }
-            break;
-        default:
-        return state;
-    }
-}
+import {reducer} from './Reducer';
 
 const initialBoxes = new Array(7 * 6).fill("white");
+
 const GameBox = () => {
 
-    const [state, dispatch] = useReducer(reducer, {color: "blue", boxes: initialBoxes, filledBox: []});
+    const [state, dispatch] = useReducer(reducer, {color: "pink", 
+                                                boxes: initialBoxes, 
+                                                filledBox: [], 
+                                                player1Score: 0, 
+                                                player2Score: 0,
+                                                winnerText1: "",
+                                                winnerText2: "",
+                                                indicatorPlay: true,
+                                                });
+
+    let indicatorColor1, indicatorColor2;
+         //console.log(state.indicatorPlay)                                       
+        if (state.indicatorPlay){
+            indicatorColor1 = {backgroundColor: "red"}
+            indicatorColor2 = {backgroundColor: "#d3d3d3"}             
+        } else {
+            indicatorColor1 = {backgroundColor: "#d3d3d3"} 
+            indicatorColor2 = {backgroundColor: "red"} 
+        }     
 
 return  <>
-            <Grid boxes = {state.boxes} onClick={(i) => dispatch({ type: "fill", index: i })} />  
-        </>
-          
+            <div className="sidebar one">
+                <div className= "indicator-dot" style={indicatorColor1}></div>
+                <h2>Player 1</h2>
+                <h1>{state.player1Score}</h1>
+                <p>{state.winnerText1}</p>
+            </div>
+            <div className="game-boxes">
+                <div className="menu-bar">
+                    <button onClick={()=> dispatch({type: "newGame"})}>NEW GAME</button>
+                    <h1>CONNECT 4</h1>
+                    <button onClick= {() => dispatch({type: "resetGame"})}>RESET GAME</button>
+                </div>
+                <Grid boxes = {state.boxes} onClick={(i) => dispatch({ type: "fill", index: i })} />  
+            </div>
+            <div className="sidebar two">
+            <div className= "indicator-dot" style={indicatorColor2}></div>
+                <h2>Player 2</h2>
+                <h1>{state.player2Score}</h1>
+                <p>{state.winnerText2}</p>
+            </div>
+        </>     
 }
 
 export default GameBox;
