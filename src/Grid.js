@@ -4,7 +4,7 @@ import React from 'react';
 const Grid = (props) => {
     let boxes = props.boxes;
     let halfBoxesTop = props.halfTopBoxes;
-    ;
+    
     const print = boxes.map((box, index) => {
         //console.log(box);
         // on the onClick function, it pass the current index of the array to the parent component by putting it as the argument on the props.onClick
@@ -16,6 +16,7 @@ const Grid = (props) => {
                     key={index}></div>
     })
     
+    // to print the half circle on top of the box
     const halfDisk = halfBoxesTop.map((halfbox,index) => {
         return <div style={{ backgroundColor: halfbox }} 
                     className="halfbox" 

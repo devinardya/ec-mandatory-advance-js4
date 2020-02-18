@@ -5,10 +5,11 @@
 .box-container {
   max-width: 1300px;
   height: 100vh;
+  width: 100vw;
   max-height: 798px;
   display: flex;
   flex-flow: row wrap;
-  justify-content: space-between;
+  justify-content: space-around;
   margin: auto;
   align-items: center;
 }
@@ -19,7 +20,7 @@
   border-radius: 50%;
   position: relative;
   top: 47px;
-  background-color: #f3f3f3;
+  background-color: #e6e6e6;
 }
 
 .indicator-dot.red {
@@ -70,6 +71,10 @@
   border: 2px dashed pink;
   display: flex;
   justify-content: center;
+  background-color: #fff;
+  -webkit-box-shadow: 0px 50px 100px -31px rgba(184,184,184,0.86);
+  -moz-box-shadow: 0px 50px 100px -31px rgba(184,184,184,0.86);
+  box-shadow: 0px 50px 100px -31px rgba(184,184,184,0.86);
 }
 
 .sidebar > p {
@@ -81,7 +86,7 @@
 }
 
 .game-boxes {
-  width: 60%;
+  width: 50%;
   height: 100%;
   display: flex;
   flex-flow: column wrap;
@@ -95,48 +100,57 @@
   flex-flow: row wrap;
   justify-content: center;
   align-items: center;
-  margin: -30px 0 40px 0;
+  margin: 0;
 }
 
 .menu-bar > h1 {
-  margin: 0 0 10px 0;
+  margin: -50px 0 50px 0;
   color: cadetblue;
   width: 100%;
   text-align: center;
   z-index: 999;
+  font-size: 50px;
 }
 
 .menu-bar > button {
-  padding: 10px 23px;
+  padding: 15px 23px;
   width: 150px;
   background-color: rgb(255, 110, 134);
   border: none;
   border-radius: 10px;
   color: #fff;
   font-weight: bold;
-  margin: 0 10px;
+  margin: 30px 10px 0 10px;
   font-size: 14px;
   z-index: 999;
+  -webkit-box-shadow: 0px 50px 100px -31px rgba(184,184,184,0.86);
+  -moz-box-shadow: 0px 50px 100px -31px rgba(184,184,184,0.86);
+  box-shadow: 0px 50px 100px -31px rgba(184,184,184,0.86);
 }
 
 .game-result {
-  max-width: 1300px;
   height: 100vh;
   width: 100vw;
-  max-height: 798px;
   background-color: RGB(234, 234, 234, 0.5);
   position: absolute;
   top:0;
+  left: 0;
+  display: none;
 }
 
+.game-result.active{
+  display: block;
+}
+
+
 .game-result > h3 {
-  width: 400px;
+  width: 450px;
   height: 150px;
   background-color: rgb(255, 110, 134);
   position: absolute; 
   top: 50%; 
   left: 50%;
-  transform: translate(-50%, -50%);
+  transform: translate(-50%, -73%);
   justify-content: center;
   display: flex;
   align-items: center;
@@ -165,14 +179,14 @@
 
 .container {
   display: grid;
-  width: 560px;
+  width: 490px;
   height: auto;
-  margin-top: -40px;
-  grid-template-columns: repeat(7, 80px [col-start]);
-  grid-template-rows: repeat(6, 80px [col-start]); 
+  margin-top: -30px;
+  grid-template-columns: repeat(7, 70px [col-start]);
+  grid-template-rows: repeat(6, 70px [col-start]); 
   grid-column-gap: 0px;
   grid-row-gap: 0px;
-  background-color:cadetblue; 
+  background-color: cadetblue; 
   justify-content: center;
   padding: 30px;
   border-radius: 25px;
@@ -184,11 +198,12 @@
 
 .halfbox-container {
   display: grid;
-  width: 560px;
+  width: 490px;
   height: auto;
-  grid-template-columns: repeat(7, 80px [col-start]);
-  grid-template-rows: repeat(1, 80px [col-start]); 
+  grid-template-columns: repeat(7, 70px [col-start]);
+  grid-template-rows: repeat(1, 70px [col-start]); 
   grid-column-gap: 0px;
+  margin: -30px 0 0 0;
 }
 
 .halfbox{
@@ -210,6 +225,10 @@
   box-shadow: inset -1px 6px 7px -6px rgba(94,94,94,1);
 }
 
+.box:hover {
+  cursor: pointer;
+}
+
 .color-container {
   display: flex;
   flex-flow: row wrap;
@@ -219,7 +238,7 @@
 }
 
 .color-box {
-  width: 80px;
-  height: 80px;
+  width: 70px;
+  height: 70px;
   margin: 0 5px;
 }

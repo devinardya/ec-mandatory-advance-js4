@@ -20,7 +20,7 @@ const GameBox = () => {
                                                 });
 
     let indicatorColor1, indicatorColor2, gameResult;
-         //console.log(state.indicatorPlay)                                       
+         // to control the toggle of the dot color to show which player is active                                   
         if (state.indicatorPlay){
             indicatorColor1 = "indicator-dot red";
             indicatorColor2 = "indicator-dot";            
@@ -29,10 +29,13 @@ const GameBox = () => {
             indicatorColor2 = "indicator-dot red";
         }     
         
+        // if someone is winning, then reset the dot color to grey and show the winner announcement box
         if (state.winningStatus){
-            gameResult = "game-result";
+            gameResult = "game-result active";
             indicatorColor1 = "indicator-dot";
             indicatorColor2 = "indicator-dot"; 
+        } else {
+            gameResult = "game-result";
         }
 
 return  <>
@@ -48,14 +51,17 @@ return  <>
             <div className="game-boxes">
                 <div className="menu-bar">
                     <h1>CONNECT 4</h1>
-                    <button onClick={()=> dispatch({type: "newGame"})}>NEW GAME</button>
-                    <button onClick= {() => dispatch({type: "resetGame"})}>RESET GAME</button>
                 </div>
                 <Grid boxes = {state.boxes} 
                       halfTopBoxes = {state.halfBoxesTop}
                       onMouseOut = {(i) => dispatch({ type: "hoverOut", index: i})}
                       onMouseOver={(i) => dispatch({ type: "hover", index: i})} 
-                      onClick={(i) => dispatch({ type: "fill", index: i })} />  
+                      onClick={(i) => dispatch({ type: "fill", index: i })} 
+                />  
+                <div className="menu-bar">
+                    <button onClick={()=> dispatch({type: "newGame"})}>NEW GAME</button>
+                    <button onClick= {() => dispatch({type: "resetGame"})}>RESET GAME</button>
+                </div>
             </div>
             <div className="sidebar two">
             <div className= {indicatorColor2}></div>

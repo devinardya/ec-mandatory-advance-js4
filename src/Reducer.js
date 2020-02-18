@@ -36,7 +36,7 @@ function reducer(state, action) {
 
             //console.log("filledbox", state.filledBox)
 
-            // function to check if there's a winning combination on every input from the player
+            // function to check if there's a winning combination on every input from the player, return an array
             const winner = checkWinner(newBoxes);
             //console.log(winner[2])
    
@@ -51,7 +51,6 @@ function reducer(state, action) {
                 indicatorPlay: state.indicatorPlay === true ? false : true,
                 winnerText: winner[0],
                 player1Score: state.player1Score + winner[1],
-                //winnerText2: winner[2],
                 player2Score: state.player2Score + winner[2],
                 winningStatus: winner[3],
             }
@@ -60,12 +59,12 @@ function reducer(state, action) {
             if (state.winningStatus){
                 return state;
             }
-
+            // hovering across the column 
             const newHalfBoxes = [...state.halfBoxesTop];
             const indexHalfBox = action.index % 7;
             newHalfBoxes[indexHalfBox] = state.halfBoxColor;
 
-
+            // change the color of the circle to light grey when the mouse is away from the circle and inside the outer teal box
             return {
                 ...state,
                 halfBoxesTop: newHalfBoxes,
@@ -78,7 +77,7 @@ function reducer(state, action) {
             if (state.winningStatus){
                 return state;
             }
-
+            // change the color of the circle to the active color when the mouse is hovering inside the circle 
             const newHalfBoxes = [...state.halfBoxesTop];
             const indexHalfBox = action.index % 7;
             newHalfBoxes[indexHalfBox] = state.halfBoxColor;
@@ -105,7 +104,6 @@ function reducer(state, action) {
             }
 
         // action to start a reset the whole game
-
         case "resetGame":
             return {
                 ...state,

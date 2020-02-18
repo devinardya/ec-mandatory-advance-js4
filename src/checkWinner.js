@@ -1,4 +1,3 @@
-
 function checkWinner(boxes){
 
     let wintext = "";
@@ -110,7 +109,7 @@ function checkWinner(boxes){
   }
 
   if (countPink === 21) {
-        wintext = "The game is draw";
+        wintext = "It's a draw";
         winstatus = true;
   }
 
