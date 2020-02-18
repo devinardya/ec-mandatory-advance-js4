@@ -1,7 +1,7 @@
 import {checkWinner} from './checkWinner';
 
 const initialBoxes = new Array(7 * 6).fill("white");
-const initialHalfBoxesTop = new Array (7 * 1).fill("white");
+const initialHalfBoxesTop = new Array (7 * 1).fill("#e6e6e6");
 
 function reducer(state, action) {
    
@@ -69,7 +69,7 @@ function reducer(state, action) {
             return {
                 ...state,
                 halfBoxesTop: newHalfBoxes,
-                halfBoxColor: "white",
+                halfBoxColor: "#e6e6e6",
                 indicatorPlay: state.indicatorPlay,
             }
         }

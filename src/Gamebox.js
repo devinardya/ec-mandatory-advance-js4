@@ -3,7 +3,7 @@ import Grid from './Grid';
 import {reducer} from './Reducer';
 
 const initialBoxes = new Array(7 * 6).fill("white");
-const initialHalfBoxesTop = new Array (7 * 1).fill("white");
+const initialHalfBoxesTop = new Array (7 * 1).fill("#e6e6e6");
 
 const GameBox = () => {
 
@@ -36,6 +36,9 @@ const GameBox = () => {
         }
 
 return  <>
+             <div className={gameResult}>
+                    <h3>{state.winnerText}</h3>
+            </div>
             <div className="sidebar one">
                 <div className= {indicatorColor1}></div>
                 <h2>Player 1</h2>
@@ -43,7 +46,6 @@ return  <>
                 <p>{state.winnerText1}</p>
             </div>
             <div className="game-boxes">
-                <div className={gameResult}>{state.winnerText}</div>
                 <div className="menu-bar">
                     <h1>CONNECT 4</h1>
                     <button onClick={()=> dispatch({type: "newGame"})}>NEW GAME</button>
