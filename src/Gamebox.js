@@ -50,7 +50,7 @@ return  <>
             </div>
             <div className="game-boxes">
                 <div className="menu-bar">
-                    <h1>CONNECT 4</h1>
+                    <h1>CONNECT<span>4</span></h1>
                 </div>
                 <Grid boxes = {state.boxes} 
                       halfTopBoxes = {state.halfBoxesTop}

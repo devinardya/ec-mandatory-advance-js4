@@ -68,10 +68,9 @@
   width: 150px;
   line-height: 150px;
   border-radius:20px;
-  border: 2px dashed pink;
   display: flex;
   justify-content: center;
-  background-color: #fff;
+  background-color: #f1f3f6;
   -webkit-box-shadow: 0px 50px 100px -31px rgba(184,184,184,0.86);
   -moz-box-shadow: 0px 50px 100px -31px rgba(184,184,184,0.86);
   box-shadow: 0px 50px 100px -31px rgba(184,184,184,0.86);
@@ -105,11 +104,15 @@
 
 .menu-bar > h1 {
   margin: -50px 0 50px 0;
-  color: cadetblue;
+  color: rgb(255, 164, 180);
   width: 100%;
   text-align: center;
   z-index: 999;
   font-size: 50px;
+}
+
+.menu-bar > h1 > span {
+  color: rgb(165, 165, 165);
 }
 
 .menu-bar > button {
@@ -181,12 +184,12 @@
   display: grid;
   width: 490px;
   height: auto;
-  margin-top: -30px;
+  margin-top: -35px;
   grid-template-columns: repeat(7, 70px [col-start]);
   grid-template-rows: repeat(6, 70px [col-start]); 
   grid-column-gap: 0px;
   grid-row-gap: 0px;
-  background-color: cadetblue; 
+  background-color: rgb(247, 247, 247); 
   justify-content: center;
   padding: 30px;
   border-radius: 25px;
@@ -212,6 +215,7 @@
   height: 80%;
   border-radius: 50%;
   margin: auto;
+
 }
 
 .box{
