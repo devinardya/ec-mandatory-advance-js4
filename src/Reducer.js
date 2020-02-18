@@ -1,6 +1,7 @@
 import {checkWinner} from './checkWinner';
 
 const initialBoxes = new Array(7 * 6).fill("white");
+const initialHalfBoxesTop = new Array (7 * 1).fill("white");
 
 function reducer(state, action) {
    
@@ -19,6 +20,7 @@ function reducer(state, action) {
             const newBoxes = [...state.boxes];
             const column = action.index % 7;
             let index = 5 * 7 + column;
+      
             console.log("index", index);
   
             const allFilledBox = [...state.filledBox];
@@ -32,12 +34,11 @@ function reducer(state, action) {
 
             newBoxes[index] = state.color;
 
-            console.log("filledbox", state.filledBox)
+            //console.log("filledbox", state.filledBox)
 
             // function to check if there's a winning combination on every input from the player
             const winner = checkWinner(newBoxes);
-            console.log(winner)
-
+            //console.log(winner[2])
    
             return {
                 //saving every changes done to the state by doing the spread (...)
@@ -45,14 +46,50 @@ function reducer(state, action) {
                 //setting a specific state to the new one (like setState on class)
                 boxes: newBoxes,
                 color: state.color === "pink" ? "grey" : "pink",
+                halfBoxesTop : initialHalfBoxesTop,
                 filledBox: [...state.filledBox, index],
                 indicatorPlay: state.indicatorPlay === true ? false : true,
-                winnerText1: winner[0],
-                player1Score: state.player1Score+winner[1],
-                winnerText2: winner[2],
-                player2score: state.player2Score+winner[3],
-                winningStatus: winner[4]
+                winnerText: winner[0],
+                player1Score: state.player1Score + winner[1],
+                //winnerText2: winner[2],
+                player2Score: state.player2Score + winner[2],
+                winningStatus: winner[3],
             }
+        
+        case "hover": {
+            if (state.winningStatus){
+                return state;
+            }
+
+            const newHalfBoxes = [...state.halfBoxesTop];
+            const indexHalfBox = action.index % 7;
+            newHalfBoxes[indexHalfBox] = state.halfBoxColor;
+
+
+            return {
+                ...state,
+                halfBoxesTop: newHalfBoxes,
+                halfBoxColor: "white",
+                indicatorPlay: state.indicatorPlay,
+            }
+        }
+
+        case "hoverOut": {
+            if (state.winningStatus){
+                return state;
+            }
+
+            const newHalfBoxes = [...state.halfBoxesTop];
+            const indexHalfBox = action.index % 7;
+            newHalfBoxes[indexHalfBox] = state.halfBoxColor;
+
+            return {
+                ...state,
+                halfBoxesTop: newHalfBoxes,
+                halfBoxColor: state.color,
+                indicatorPlay: state.indicatorPlay,
+            }
+        } 
         
         // action to start a new game with keeping the current score to the next one    
         case "newGame":
@@ -61,8 +98,10 @@ function reducer(state, action) {
                 filledBox: [],
                 boxes: initialBoxes,
                 color: "pink",
-                winnerText1: "",
-                winnerText2: "",
+                halfBoxesTop : initialHalfBoxesTop,
+                winnerText: "",
+                indicatorPlay: true,
+                winningStatus: false,
             }
 
         // action to start a reset the whole game
@@ -73,10 +112,12 @@ function reducer(state, action) {
                 boxes: initialBoxes, 
                 filledBox: [], 
                 color: "pink",
+                halfBoxesTop : initialHalfBoxesTop,
                 player1Score: 0, 
                 player2Score: 0,
-                winnerText1: "",
-                winnerText2: "",
+                winnerText: "",
+                indicatorPlay: true,
+                winningStatus: false,
             }
         default:
         return state;

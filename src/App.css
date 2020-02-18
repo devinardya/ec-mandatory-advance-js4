@@ -31,19 +31,25 @@
   flex-flow: column wrap;
   justify-content: center;
   color: grey;
-  align-items: center;
+}
+
+.sidebar > h2 {
+  font-size: 30px;
 }
 
 .sidebar.one {
   align-items: flex-end;
+  text-align: center;
 }
 
 .sidebar.one > h2 {
   color: rgb(255, 126, 148);
+  margin-right: 20px;
 }
 
 .sidebar.two {
   align-items: flex-start;
+  text-align: center;
 }
 
 .sidebar > h1 {
@@ -53,16 +59,17 @@
   width: 150px;
   line-height: 150px;
   border-radius:20px;
-  border: 1px solid pink;
+  border: 2px dashed pink;
   display: flex;
   justify-content: center;
 }
 
 .sidebar > p {
   height:16px;
-  margin: 0;
+  margin: 20px 0 0 0;
   color: rgb(255, 93, 120);
   font-weight: bold;
+  font-size: 22px;
 }
 
 .game-boxes {
@@ -75,17 +82,19 @@
 }
 
 .menu-bar {
-  height: 15%;
+  height: 10%;
   display: flex;
   flex-flow: row wrap;
   justify-content: center;
   align-items: center;
-  margin: -30px 0 10px 0;
+  margin: -30px 0 40px 0;
 }
 
 .menu-bar > h1 {
-  margin: 0 40px;
+  margin: 0 0 10px 0;
   color: cadetblue;
+  width: 100%;
+  text-align: center;
 }
 
 .menu-bar > button {
@@ -96,12 +105,46 @@
   border-radius: 10px;
   color: #fff;
   font-weight: bold;
+  margin: 0 10px;
+}
+
+.game-result {
+  width: 400px;
+  height: 150px;
+  background-color: rgb(255, 110, 134);
+  position: absolute; 
+  top: 45%; 
+  justify-content: center;
+  display: flex;
+  align-items: center;
+  font-size: 40px;
+  line-height: 150px;
+  color: white;
+  text-transform: uppercase;
+  border-radius: 30px;
+}
+
+.menu-bar > button:hover {
+  cursor: pointer;
+}
+
+.menu-bar > button:last-of-type {
+  background-color: #afafaf;
+}
+
+.menu-bar > button:first-of-type:hover {
+  background-color: rgb(219, 40, 70);
+}
+
+.menu-bar > button:last-of-type:hover {
+  background-color: #6e6e6e;
 }
 
 .container {
   display: grid;
   width: 560px;
   height: auto;
+  margin-top: -40px;
   grid-template-columns: repeat(7, 80px [col-start]);
   grid-template-rows: repeat(6, 80px [col-start]); 
   grid-column-gap: 0px;
@@ -114,6 +157,23 @@
   -moz-box-shadow: 0px 50px 100px -31px rgba(184,184,184,0.86);
   box-shadow: 0px 50px 100px -31px rgba(184,184,184,0.86);
  /*  border: 1px solid #737373; */
+}
+
+.halfbox-container {
+  display: grid;
+  width: 560px;
+  height: auto;
+  grid-template-columns: repeat(7, 80px [col-start]);
+  grid-template-rows: repeat(1, 80px [col-start]); 
+  grid-column-gap: 0px;
+}
+
+.halfbox{
+  border: none;
+  width: 80%;
+  height: 80%;
+  border-radius: 50%;
+  margin: auto;
 }
 
 .box{
