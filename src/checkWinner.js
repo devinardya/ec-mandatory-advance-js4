@@ -6,7 +6,6 @@ function checkWinner(boxes){
     let winstatus = false;
     let countPink = 0;
 
-  
     // check winner based on horizontal position
 
     for (let j = 0; j <=5; j ++) {
@@ -112,10 +111,6 @@ function checkWinner(boxes){
         wintext = "It's a draw";
         winstatus = true;
   }
-
-  console.log("pink", countPink)
-
-
 
   return [wintext, p1score, p2score, winstatus];
 }

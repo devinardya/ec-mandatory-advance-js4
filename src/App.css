@@ -41,6 +41,10 @@
   text-transform: uppercase;
 }
 
+.sidebar.two > .indicator-dot {
+  top: -25px;
+}
+
 .sidebar.one {
   align-items: flex-end;
   text-align: center;
@@ -53,6 +57,7 @@
 
 .sidebar.two > h2 {
   margin-left: 30px;
+  margin-top: -50px;
 }
 
 
@@ -66,7 +71,7 @@
   margin: 0;
   height: 150px;
   width: 150px;
-  line-height: 150px;
+  line-height: 140px;
   border-radius:20px;
   display: flex;
   justify-content: center;
@@ -82,6 +87,14 @@
   color: rgb(255, 93, 120);
   font-weight: bold;
   font-size: 22px;
+}
+
+.sidebar.two > p:first-of-type {
+  font-size: 11px;
+  position: relative;
+  top: -10%;
+  left: 0px;
+  margin: 0;
 }
 
 .game-boxes {
@@ -149,7 +162,7 @@
 .game-result > h3 {
   width: 450px;
   height: 150px;
-  background-color: rgb(255, 110, 134);
+  background-color: rgb(255, 110, 134, 0.7);
   position: absolute; 
   top: 50%; 
   left: 50%;
@@ -179,6 +192,23 @@
 .menu-bar > button:last-of-type:hover {
   background-color: #6e6e6e;
 }
+
+.ai-toggle {
+  margin-left: 0px;
+  display: flex;
+  justify-content: center;
+  height: 40px;
+  line-height: 40px;
+  border: none;
+  position: relative;
+  top: -10%;
+  font-weight: bold;
+}
+
+.ai-toggle:hover {
+  cursor: pointer;
+}
+
 
 .container {
   display: grid;
