@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import Grid from './Grid';
 import { FaToggleOff, FaToggleOn } from "react-icons/fa";
 import {reducer} from './Reducer';
+import Sidebar from './Sidebar';
 
 const initialBoxes = new Array(7 * 6).fill("white");
 const initialHalfBoxesTop = new Array (7 * 1).fill("#e6e6e6");
@@ -22,7 +23,8 @@ const GameBox = () => {
                                                     AIOn: false,
                                                 });
 
-    let indicatorColor1, indicatorColor2, gameResult, AiToggle, winScore1, winScore2;
+                                          
+        let indicatorColor1, indicatorColor2, gameResult, AiToggle, winScore1, winScore2;
          // to control the toggle of the dot color to show which player is active                                   
         if (state.indicatorPlay){
             indicatorColor1 = "indicator-dot red";
@@ -31,18 +33,9 @@ const GameBox = () => {
             indicatorColor1 = "indicator-dot";
             indicatorColor2 = "indicator-dot red";
         }     
-        
-        // if someone is winning, then reset the dot color to grey and show the winner announcement box
-        if (state.winningStatus){
-            gameResult =  (<div className="game-result active">
-                                <h3>{state.winnerText}</h3>
-                           </div>)
-            indicatorColor1 = "indicator-dot";
-            indicatorColor2 = "indicator-dot"; 
-        } /* else {
-            gameResult = "game-result";
-        } */
-
+       
+     
+/* 
         if (state.AIOn) {
             AiToggle =  <>
                             <div  className="ai-toggle" 
@@ -61,7 +54,9 @@ const GameBox = () => {
                             </div>
                             <p>Turn on AI to have computer as player 2</p>
                       </>
-        }
+        }  */
+
+        AiToggle = null;
 
         if (state.player1Score > state.player2Score) {
             winScore2 = {color: "grey"};
@@ -73,13 +68,29 @@ const GameBox = () => {
             winScore2 = {color: "grey"};
         }
 
+           // if someone is winning, then reset the dot color to grey and show the winner announcement box
+           if (state.winningStatus){
+            gameResult =  (<div className="game-result active">
+                                <h3>{state.winnerText}</h3>
+                           </div>)
+           indicatorColor1 = "indicator-dot";
+            indicatorColor2 = "indicator-dot";  
+        }  else {
+            gameResult = "game-result";
+        } 
+
 return  <> 
             <div className="sidebar one">
+                <div className="empty-toggle"></div>
                 <div className= {indicatorColor1}></div>
                 <h2>Player 1</h2>
                 <h1 style={winScore1}>{state.player1Score}</h1>
                 <p>{state.winnerText1}</p>
-            </div>
+            </div> 
+           {/*  <Sidebar 
+                classNameText = "sidebar one"
+              
+            /> */}
             <div className="game-boxes">
                 <div className="menu-bar">
                     <h1>CONNECT<span>4</span></h1>
@@ -97,12 +108,12 @@ return  <>
             </div>
             <div className="sidebar two">
                 {AiToggle}
-                <div className= {indicatorColor2}></div>
-                
+                <div className= {indicatorColor2}></div>    
                 <h2>Player 2</h2>
                 <h1 style={winScore2}>{state.player2Score}</h1>
                 <p>{state.winnerText2}</p>
-            </div>
+            </div> 
+           
             {ReactDOM.createPortal(gameResult, document.body)}
         </>     
 }
