@@ -1,9 +1,9 @@
-import React, {useReducer} from 'react';
+import React, { useReducer } from 'react';
 import ReactDOM from 'react-dom';
 import Grid from './Grid';
-import { FaToggleOff, FaToggleOn } from "react-icons/fa";
 import {reducer} from './Reducer';
 import Sidebar from './Sidebar';
+import { FaToggleOn, FaToggleOff} from "react-icons/fa";
 
 const initialBoxes = new Array(7 * 6).fill("white");
 const initialHalfBoxesTop = new Array (7 * 1).fill("#e6e6e6");
@@ -19,87 +19,71 @@ const GameBox = () => {
                                                     player2Score: 0,
                                                     winnerText: "",
                                                     indicatorPlay: true,
-                                                    winningStatus: false,
-                                                    AIOn: false,
+                                                    AI: false,
+                                                    AIMoving: false,
                                                 });
 
+        
                                           
-        let indicatorColor1, indicatorColor2, gameResult, AiToggle, winScore1, winScore2;
-         // to control the toggle of the dot color to show which player is active                                   
-        if (state.indicatorPlay){
-            indicatorColor1 = "indicator-dot red";
-            indicatorColor2 = "indicator-dot";            
-        } else {
-            indicatorColor1 = "indicator-dot";
-            indicatorColor2 = "indicator-dot red";
-        }     
-       
-     
-/* 
-        if (state.AIOn) {
-            AiToggle =  <>
-                            <div  className="ai-toggle" 
-                                    onClick={() => dispatch({ type: "AIOn" })}>
-                                    <FaToggleOn size="30px" color="rgb(219, 40, 70" style={{marginRight: "10px", top: "5px", position: "relative"}}/>
-                                    AI ON      
-                            </div>
-                            <p></p>
-                         </>
-        } else {
-            AiToggle = <>
-                            <div  className="ai-toggle" 
-                            onClick={() => dispatch({ type: "AIOn" })}>
-                            <FaToggleOff size="30px"  color="grey" style={{marginRight: "10px", top: "5px", position: "relative"}}/>
-                            AI OFF
-                            </div>
-                            <p>Turn on AI to have computer as player 2</p>
-                      </>
-        }  */
+    let gameResult, filler, AiToggle;
+   // console.log("AI Moving", state.AIMoving)
+    if(state.AIMoving){
+        console.log("this got AImove")
+        filler = "AIFill"
+    } else {
+        filler = "fill"
+    } 
+                                     
+    // if someone is winning, then reset the dot color to grey and show the winner announcement box
+    if (state.winningStatus){
+    gameResult =  (<div className="game-result active">
+                        <h3>{state.winnerText}</h3>
+                    </div>)
+    }  else {
+        gameResult = "game-result";
+    } 
 
-        AiToggle = null;
+    if (state.AI) {
+        AiToggle =  <>
+                        <div  className="ai-toggle" 
+                                onClick={() => dispatch({ type: "AIOn" })}>
+                                <FaToggleOn size="30px" color="rgb(219, 40, 70" style={{marginRight: "10px", top: "5px", position: "relative"}}/>
+                                AI ON      
+                        </div>
+                        <p></p>
+                        </>
+    } else {
+        AiToggle = <>
+                        <div  className="ai-toggle" 
+                        onClick={() => dispatch({ type: "AIOn" })}>
+                        <FaToggleOff size="30px"  color="grey" style={{marginRight: "10px", top: "5px", position: "relative"}}/>
+                        AI OFF
+                        </div>
+                        <p>Turn on AI to have computer as player 2</p>
+                    </>
+    }  
 
-        if (state.player1Score > state.player2Score) {
-            winScore2 = {color: "grey"};
-            winScore1 = {color: "rgb(255, 126, 148)"};
-        } else if (state.player1Score < state.player2Score) {
-            winScore2 = {color: "rgb(255, 126, 148)"};
-            winScore1 = {color: "grey"};
-        } else {
-            winScore2 = {color: "grey"};
-        }
-
-           // if someone is winning, then reset the dot color to grey and show the winner announcement box
-           if (state.winningStatus){
-            gameResult =  (<div className="game-result active">
-                                <h3>{state.winnerText}</h3>
-                           </div>)
-           indicatorColor1 = "indicator-dot";
-            indicatorColor2 = "indicator-dot";  
-        }  else {
-            gameResult = "game-result";
-        } 
+   // AiToggle = null;
 
 return  <> 
-            <div className="sidebar one">
-                <div className="empty-toggle"></div>
-                <div className= {indicatorColor1}></div>
-                <h2>Player 1</h2>
-                <h1 style={winScore1}>{state.player1Score}</h1>
-                <p>{state.winnerText1}</p>
-            </div> 
-           {/*  <Sidebar 
-                classNameText = "sidebar one"
-              
-            /> */}
+             <Sidebar 
+                sidebar = "one"
+                player1Score = {state.player1Score}
+                player2Score = {state.player2Score}
+                indicatorPlay = {state.indicatorPlay}
+                winningStatus = {state.winningStatus}
+            />
             <div className="game-boxes">
                 <div className="menu-bar">
                     <h1>CONNECT<span>4</span></h1>
                 </div>
                 <Grid boxes = {state.boxes} 
                       halfTopBoxes = {state.halfBoxesTop}
+                      AIMoving = {state.AIMoving}
+                      filledBox = {state.filledBox}
                       onMouseOut = {(i) => dispatch({ type: "hoverOut", index: i})}
-                      onMouseOver={(i) => dispatch({ type: "hover", index: i})} 
-                      onClick={(i) => dispatch({ type: "fill", index: i })} 
+                      onMouseOver = {(i) => dispatch({ type: "hover", index: i})} 
+                      onClick = {(i) => dispatch({ type: filler, index: i })}  
                 />  
                 <div className="menu-bar">
                     <button onClick={()=> dispatch({type: "newGame"})}>NEW GAME</button>
@@ -108,12 +92,16 @@ return  <>
             </div>
             <div className="sidebar two">
                 {AiToggle}
-                <div className= {indicatorColor2}></div>    
-                <h2>Player 2</h2>
-                <h1 style={winScore2}>{state.player2Score}</h1>
-                <p>{state.winnerText2}</p>
-            </div> 
-           
+                <Sidebar 
+                    sidebar = "two"
+                    AIOn = {state.AIOn}
+                    player1Score = {state.player1Score}
+                    player2Score = {state.player2Score}
+                    indicatorPlay = {state.indicatorPlay}
+                    winningStatus = {state.winningStatus}
+                />
+            </div>
+
             {ReactDOM.createPortal(gameResult, document.body)}
         </>     
 }

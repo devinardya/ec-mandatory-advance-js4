@@ -1,10 +1,9 @@
 import React from 'react';
-import { FaToggleOff, FaToggleOn } from "react-icons/fa";
 
-const Sidebar = (props) => {
+const Sidebar = React.memo( (props) => {
     
 
-    let indicatorColor1, indicatorColor2, AiToggle, winScore1, winScore2, sideClassName;
+    let indicatorColor1, indicatorColor2, winScore1, winScore2, printData;
     // to control the toggle of the dot color to show which player is active                                   
    if (props.indicatorPlay){
        indicatorColor1 = "indicator-dot red";
@@ -22,7 +21,10 @@ const Sidebar = (props) => {
        gameResult = "game-result";
    } */
 
+     // to control the color of the winner scores 
+
    if (props.player1Score > props.player2Score) {
+       console.log("it's here")
        winScore2 = {color: "grey"};
        winScore1 = {color: "rgb(255, 126, 148)"};
    } else if (props.player1Score < props.player2Score) {
@@ -32,20 +34,26 @@ const Sidebar = (props) => {
        winScore2 = {color: "grey"};
    }
 
-   if (props.classNameText === "sidebar one") {
-        sideClassName = "sidebar one";
-   } else {
-        sideClassName = "sidebar two";
-      
+
+   if (props.sidebar === "one"){
+       printData = (<div className="sidebar one">
+                        <div className= {indicatorColor1}></div>
+                        <h2>Player 1</h2>
+                        <h1 style={winScore1}>{props.player1Score}</h1>
+                    </div>)
+   } 
+   
+   if (props.sidebar === "two") {
+       printData = (<>
+                        <div className= {indicatorColor2}></div>
+                        <h2>Player 2</h2>
+                        <h1 style={winScore2}>{props.player2Score}</h1>
+                    </>  )
    }
 
-    return  (<div className={sideClassName}>
-                <div className= {indicatorColor1}></div>
-                {AiToggle}
-                <h2>Player 1</h2>
-                <h1 style={winScore1}>{props.player1Score}</h1>
-                <p>{props.winnerText1}</p>
-             </div>)
-}
+    return  <>
+              {printData}
+            </>
+});
 
 export default Sidebar;
