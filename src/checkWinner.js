@@ -4,7 +4,7 @@ function checkWinner(boxes){
     let p1score = 0;
     let p2score = 0;
     let winstatus = false;
-    let countPink = 0;
+    let countGrey = 0;
 
     // check winner based on horizontal position
 
@@ -102,12 +102,12 @@ function checkWinner(boxes){
   // check if its draw 
 
   for ( let i = 0; i < boxes.length; i++) {
-      if (boxes[i] === "pink") {
-          countPink++
+      if (boxes[i] === "grey") {
+          countGrey++
       }
   }
 
-  if (countPink === 21) {
+  if (countGrey === 21 && wintext === "") {
         wintext = "It's a draw";
         winstatus = true;
   }
