@@ -155,12 +155,8 @@
   position: absolute;
   top:0;
   left: 0;
-  display: none;
 }
 
-.game-result.active{
-  display: block;
-}
 
 .empty-toggle {
   margin-bottom: 0px;
@@ -208,7 +204,7 @@
   line-height: 40px;
   border: none;
   position: absolute;
-  top:30%;
+  top:29%;
   font-weight: bold;
 }
 

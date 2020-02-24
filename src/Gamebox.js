@@ -26,21 +26,20 @@ const GameBox = () => {
         
                                           
     let gameResult, filler, AiToggle;
+                                       
+    // if someone is winning, then reset the dot color to grey and show the winner announcement box
+    if (state.winningStatus){
+        gameResult =  (<div className="game-result">
+                            <h3>{state.winnerText}</h3>
+                        </div>)
+        }
+
    // console.log("AI Moving", state.AIMoving)
     if(state.AIMoving){
         console.log("this got AImove")
         filler = "AIFill"
     } else {
         filler = "fill"
-    } 
-                                     
-    // if someone is winning, then reset the dot color to grey and show the winner announcement box
-    if (state.winningStatus){
-    gameResult =  (<div className="game-result active">
-                        <h3>{state.winnerText}</h3>
-                    </div>)
-    }  else {
-        gameResult = "game-result";
     } 
 
     if (state.AI) {
