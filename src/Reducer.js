@@ -12,6 +12,10 @@ function reducer(state, action) {
         // the action type used on a specific onClick function based on the function
         case "fill":
 
+            if (state.aiIsMoving) {
+                return state;
+            }
+
             // if there already someone winning, stop the game
             if (state.winningStatus) {
                 return state;
@@ -95,6 +99,12 @@ function reducer(state, action) {
                     AIMoving: true,
             }
         }
+
+        case "ai_is_moving":
+            return {
+                ...state,
+                aiIsMoving: true,
+            }
             
         
         case "AIFill":
@@ -144,6 +154,7 @@ function reducer(state, action) {
                 player2Score: state.player2Score + winner2[2],
                 winningStatus: winner2[3],
                 AIMoving : false,
+                aiIsMoving: false,
             }
 
         case "hover":

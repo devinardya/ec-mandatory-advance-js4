@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import Grid from './Grid';
 import {reducer} from './Reducer';
 import Sidebar from './Sidebar';
+import { aiMoving} from './aiMoving';
 import { FaToggleOn, FaToggleOff} from "react-icons/fa";
 
 const initialBoxes = new Array(7 * 6).fill("white");
@@ -21,6 +22,8 @@ const GameBox = () => {
                                                     indicatorPlay: true,
                                                     AI: false,
                                                     AIMoving: false,
+                                                    winningStatus : false,
+                                                    aiIsMoving: false,
                                                 });
 
         
@@ -82,7 +85,22 @@ return  <>
                       filledBox = {state.filledBox}
                       onMouseOut = {(i) => dispatch({ type: "hoverOut", index: i})}
                       onMouseOver = {(i) => dispatch({ type: "hover", index: i})} 
-                      onClick = {(i) => dispatch({ type: filler, index: i })}  
+                      onClick = {(i) => {
+                        if (state.aiIsMoving) {
+                            return;
+                        }
+                          
+                        dispatch({ type: "fill", index: i });
+
+                        if (state.AI) {
+                            dispatch({ type: "ai_is_moving"});
+                          setTimeout(() => {
+
+                              let AiIndex = aiMoving([...state.filledBox]);
+                              dispatch({ type: "AIFill", index: AiIndex });
+                          }, 1000);
+                        }
+                      }}  
                 />  
                 <div className="menu-bar">
                     <button onClick={()=> dispatch({type: "newGame"})}>NEW GAME</button>
