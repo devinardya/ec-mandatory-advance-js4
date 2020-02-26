@@ -93,8 +93,8 @@ return  <>
                         dispatch({ type: "fill", index: i });
 
                         if (state.AI) {
-                            dispatch({ type: "ai_is_moving"});
-                          setTimeout(() => {
+                             dispatch({ type: "ai_is_moving"});
+                             setTimeout(() => {
 
                               let AiIndex = aiMoving([...state.filledBox]);
                               dispatch({ type: "AIFill", index: AiIndex });
