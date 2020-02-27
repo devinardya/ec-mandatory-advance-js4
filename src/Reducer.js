@@ -202,6 +202,9 @@ function reducer(state, action) {
                     winnerText: "",
                     indicatorPlay: true,
                     winningStatus: false,
+                    AI: false,
+                    AIMoving: false,
+                    aiIsMoving: false,
             }
 
         // action to start a reset the whole game
@@ -217,6 +220,9 @@ function reducer(state, action) {
                     winnerText: "",
                     indicatorPlay: true,
                     winningStatus: false,
+                    AI: false,
+                    AIMoving: false,
+                    aiIsMoving: false,
             }
 
         case "AIOn":
