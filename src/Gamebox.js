@@ -47,21 +47,23 @@ const GameBox = () => {
 
     if (state.AI) {
         AiToggle =  <>
-                        <div  className="ai-toggle" 
+                        <div  className="ai-toggle on" 
                                 onClick={() => dispatch({ type: "AIOn" })}>
                                 <FaToggleOn size="30px" color="rgb(219, 40, 70" style={{marginRight: "10px", top: "5px", position: "relative"}}/>
-                                AI ON      
+                                <span>AI ON </span>  
+                                <p>_</p>   
                         </div>
-                        <p></p>
+                        
                         </>
     } else {
         AiToggle = <>
                         <div  className="ai-toggle" 
                         onClick={() => dispatch({ type: "AIOn" })}>
                         <FaToggleOff size="30px"  color="grey" style={{marginRight: "10px", top: "5px", position: "relative"}}/>
-                        AI OFF
-                        </div>
+                        <span>AI OFF</span>
                         <p>Turn on AI to have computer as player 2</p>
+                        </div>
+                       
                     </>
     }  
 
@@ -98,7 +100,7 @@ return  <>
 
                               let AiIndex = aiMoving([...state.filledBox]);
                               dispatch({ type: "AIFill", index: AiIndex });
-                          }, 1000);
+                          }, 500);
                         }
                       }}  
                 />  

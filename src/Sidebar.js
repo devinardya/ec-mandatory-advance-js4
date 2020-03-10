@@ -44,11 +44,11 @@ const Sidebar = React.memo( (props) => {
    } 
    
    if (props.sidebar === "two") {
-       printData = (<>
+       printData = (<div className="score-display">
                         <div className= {indicatorColor2}></div>
                         <h2>Player 2</h2>
                         <h1 style={winScore2}>{props.player2Score}</h1>
-                    </>  )
+                    </div>  )
    }
 
     return  <>

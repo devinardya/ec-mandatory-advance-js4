@@ -42,8 +42,12 @@
   text-transform: uppercase;
 }
 
-.sidebar.two > .indicator-dot {
+.score-display > .indicator-dot {
   top: 2px;
+}
+
+.score-display {
+  margin-top: 48px;
 }
 
 .sidebar.one {
@@ -56,23 +60,18 @@
   margin-right: 30px;
 }
 
-.sidebar.two > h2 {
+.score-display > h2 {
   margin-left: 30px;
   margin-top: -22px;
+  text-transform: uppercase;
 }
-
-.sidebar.two > p:first-of-type {
-  font-size: 12px;
-  margin: 0 0 30px 0;
-}
-
 
 .sidebar.two {
   align-items: flex-start;
   text-align: center;
 }
 
-.sidebar > h1 {
+.sidebar > h1, .score-display > h1 {
   font-size: 80px;
   margin: 0;
   height: 150px;
@@ -97,15 +96,12 @@
 
 .ai-toggle > p:first-of-type {
   font-size: 11px;
-  position: relative;
-  top: -10%;
-  left: 0px;
   margin: 0;
   color: grey;
 }
 
 .game-boxes {
-  width: 50%;
+  width: 60%;
   height: 100%;
   display: flex;
   flex-flow: column wrap;
@@ -199,19 +195,25 @@
 .ai-toggle {
   margin-left: 0px;
   display: flex;
-  justify-content: center;
-  height: 40px;
+  justify-content:flex-start;
+  height: auto;
   line-height: 40px;
   border: none;
-  position: absolute;
-  top:29%;
   font-weight: bold;
+  flex-flow: column wrap;
+  align-items: flex-start;
+  position: absolute;
+  top: 50%;
+  transform: translate(0, -200%);
 }
 
 .ai-toggle:hover {
   cursor: pointer;
 }
 
+.ai-toggle.on > p {
+  color: transparent;
+}
 
 .container {
   display: grid;

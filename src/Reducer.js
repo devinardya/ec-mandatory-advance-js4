@@ -193,19 +193,35 @@ function reducer(state, action) {
 
         // action to start a new game with keeping the current score to the next one    
         case "newGame":
-            return {
-                ...state,
-                filledBox: [],
-                    boxes: initialBoxes,
-                    color: "pink",
-                    halfBoxesTop: initialHalfBoxesTop,
-                    winnerText: "",
-                    indicatorPlay: true,
-                    winningStatus: false,
-                    AI: false,
-                    AIMoving: false,
-                    aiIsMoving: false,
+            if (state.AI) {
+                return {
+                    ...state,
+                    filledBox: [],
+                        boxes: initialBoxes,
+                        color: "pink",
+                        halfBoxesTop: initialHalfBoxesTop,
+                        winnerText: "",
+                        indicatorPlay: true,
+                        winningStatus: false,
+                        AIMoving: false,
+                        aiIsMoving: false,
+                }
+            } else {
+                return {
+                    ...state,
+                    filledBox: [],
+                        boxes: initialBoxes,
+                        color: "pink",
+                        halfBoxesTop: initialHalfBoxesTop,
+                        winnerText: "",
+                        indicatorPlay: true,
+                        winningStatus: false,
+                        AI: false,
+                        AIMoving: false,
+                        aiIsMoving: false,
+                }
             }
+           
 
         // action to start a reset the whole game
         case "resetGame":
