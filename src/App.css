@@ -47,7 +47,7 @@
 }
 
 .score-display {
-  margin-top: 48px;
+  margin-top: 50px;
 }
 
 .sidebar.one {
@@ -94,10 +94,14 @@
   font-size: 22px;
 }
 
-.ai-toggle > p:first-of-type {
+.ai-toggle > p{
   font-size: 11px;
   margin: 0;
   color: grey;
+}
+
+.ai-toggle > span {
+  margin-bottom: -20px;
 }
 
 .game-boxes {
@@ -214,6 +218,7 @@
 .ai-toggle.on > p {
   color: transparent;
 }
+
 
 .container {
   display: grid;
